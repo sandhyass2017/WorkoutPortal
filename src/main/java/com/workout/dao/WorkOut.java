@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,20 +32,23 @@ public class WorkOut {
 		String UNIT_TIME = "UNIT_TIME";
 	}
 
+	public enum UnitTime {
+		HOUR,MINUTE,SECOND
+	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = Table.WORKOUT_ID)
 	private Long workoutId;
 
 	@Column(name = Table.TITLE)
-	private String calBurntPerUnitTime;
+	private Double calBurntPerUnitTime;
 	
 	@Column(name = Table.CALBURNTPERUNITTIME)
-	private String title;
+	private  String title;
 	
-
+	@Enumerated(EnumType.STRING)
 	@Column(name = Table.UNIT_TIME)
-	private String unitTime;
+	private UnitTime unitTime;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "userId")
@@ -66,19 +71,20 @@ public class WorkOut {
 		this.title = title;
 	}
 
-	public String getUnitTime() {
+	
+	public UnitTime getUnitTime() {
 		return unitTime;
 	}
 
-	public void setUnitTime(String unitTime) {
+	public void setUnitTime(UnitTime unitTime) {
 		this.unitTime = unitTime;
 	}
-	
-	public String getCalBurntPerUnitTime() {
+
+	public Double getCalBurntPerUnitTime() {
 		return calBurntPerUnitTime;
 	}
 
-	public void setCalBurntPerUnitTime(String calBurntPerUnitTime) {
+	public void setCalBurntPerUnitTime(Double calBurntPerUnitTime) {
 		this.calBurntPerUnitTime = calBurntPerUnitTime;
 	}
 	@OneToMany(
@@ -89,4 +95,12 @@ public class WorkOut {
     @JsonManagedReference    
     @JsonIgnore
     private List<WorkOutTransactions> workoutTransactions = new ArrayList<>();
+	
+	public WorkOut(Long workoutId, Double calBurntPerUnitTime, String title, UnitTime unitTime) {
+		super();
+		this.workoutId = workoutId;
+		this.calBurntPerUnitTime = calBurntPerUnitTime;
+		this.title = title;
+		this.unitTime = unitTime;
+	}
 }

@@ -1,5 +1,8 @@
 package com.workout.dao;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,13 +34,13 @@ public class WorkOutTransactions {
 	private Long txnId;
 
 	@Column(name = Table.START_TIME)
-	private java.time.LocalTime startTime;
+	private LocalDateTime startTime;
 
 	@Column(name = Table.STOP_TIME)
-	private java.time.LocalDateTime stopTime;
+	private LocalDateTime stopTime;
 
 	@Column(name = Table.DURATION)
-	private java.time.LocalDateTime duration;
+	private Duration duration;
 	
 	@Column(name = Table.CALSBURNT)
 	private Double calBurnt;
@@ -58,11 +61,11 @@ public class WorkOutTransactions {
 		this.txnId = txnId;
 	}
 
-	public java.time.LocalTime getStartTime() {
+	public java.time.LocalDateTime getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(java.time.LocalTime startTime) {
+	public void setStartTime(java.time.LocalDateTime startTime) {
 		this.startTime = startTime;
 	}
 
@@ -74,13 +77,21 @@ public class WorkOutTransactions {
 		this.stopTime = stopTime;
 	}
 
-	public java.time.LocalDateTime getDuration() {
+	public java.time.Duration getDuration() {
 		return duration;
 	}
 
-	public void setDuration(java.time.LocalDateTime duration) {
+	public void setDuration(Duration duration) {
 		this.duration = duration;
 	}
+	public WorkOut getWorkout() {
+		return workout;
+	}
+
+	public void setWorkout(WorkOut workout) {
+		this.workout = workout;
+	}
+
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "workoutId")
