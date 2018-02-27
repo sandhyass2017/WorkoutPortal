@@ -82,7 +82,7 @@ public class WorkOut {
 		this.calBurntPerUnitTime = calBurntPerUnitTime;
 	}
 	@OneToMany(
-            mappedBy = "id",
+            mappedBy = "txnId",
             cascade = CascadeType.PERSIST,
             fetch = FetchType.LAZY,
             orphanRemoval = true)
