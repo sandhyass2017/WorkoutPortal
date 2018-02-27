@@ -18,32 +18,44 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 public class WorkOutTransactions {
 
 	private interface Table {
-		String ID = "ID";
+		String TXNID = "TXNID";
 		String START_TIME = "START_TIME";
-		String END_TIME = "END_TIME";
+		String STOP_TIME = "STOP_TIME";
 		String DURATION = "DURATION";
+		String CALSBURNT = "CALSBURNT";
 	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = Table.ID)
-	private Long id;
+	@Column(name = Table.TXNID)
+	private Long txnId;
 
 	@Column(name = Table.START_TIME)
 	private java.time.LocalTime startTime;
 
-	@Column(name = Table.END_TIME)
-	private java.time.LocalTime endTime;
+	@Column(name = Table.STOP_TIME)
+	private java.time.LocalDateTime stopTime;
 
 	@Column(name = Table.DURATION)
-	private java.time.LocalTime duration;
+	private java.time.LocalDateTime duration;
+	
+	@Column(name = Table.CALSBURNT)
+	private Double calBurnt;
 
-	public Long getId() {
-		return id;
+	public Double getCalBurnt() {
+		return calBurnt;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setCalBurnt(Double calBurnt) {
+		this.calBurnt = calBurnt;
+	}
+
+	public Long getTxnId() {
+		return txnId;
+	}
+
+	public void setTxnId(Long txnId) {
+		this.txnId = txnId;
 	}
 
 	public java.time.LocalTime getStartTime() {
@@ -54,19 +66,19 @@ public class WorkOutTransactions {
 		this.startTime = startTime;
 	}
 
-	public java.time.LocalTime getEndTime() {
-		return endTime;
+	public java.time.LocalDateTime getStopTime() {
+		return stopTime;
 	}
 
-	public void setEndTime(java.time.LocalTime endTime) {
-		this.endTime = endTime;
+	public void setStopTime(java.time.LocalDateTime stopTime) {
+		this.stopTime = stopTime;
 	}
 
-	public java.time.LocalTime getDuration() {
+	public java.time.LocalDateTime getDuration() {
 		return duration;
 	}
 
-	public void setDuration(java.time.LocalTime duration) {
+	public void setDuration(java.time.LocalDateTime duration) {
 		this.duration = duration;
 	}
 	

@@ -22,8 +22,8 @@ public class User {
 	
 	private interface Table {
 		String USERID = "USERID";
+		String USERNAME = "USERNAME";
 		String PASSWORD = "PASSWORD";
-		String EMAIL_ID = "EMAIL_ID";
 	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,8 +33,8 @@ public class User {
 	@Column(name = Table.PASSWORD)
 	private String password;
 
-	@Column(name = Table.EMAIL_ID, unique = true)
-	private String emailId;
+	@Column(name = Table.USERNAME, unique = true)
+	private String userName;
 	
 	public Long getUserId() {
 		return userId;
@@ -52,12 +52,12 @@ public class User {
 		this.password = password;
 	}
 
-	public String getEmailId() {
-		return emailId;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 	@OneToMany(

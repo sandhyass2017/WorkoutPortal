@@ -39,11 +39,11 @@ public class UserController {
     }
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/login")
-    public ResponseEntity<String> authenticateUser(@RequestHeader("emailId") String emailId,
+    public ResponseEntity<String> authenticateUser(@RequestHeader("userName") String userName,
                                                    @RequestHeader("password") String password) {
 
         ResponseEntity<String> response = null;
-        Long userId = userService.authenticateUser(emailId, password);
+        Long userId = userService.authenticateUser(userName, password);
         Map<String, Object> message = new HashMap<String, Object>();
         if (userId != null) {
             message.put("message", "User Authenticated Successfully.");

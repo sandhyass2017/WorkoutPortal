@@ -8,7 +8,7 @@ import com.workout.dao.User;
 
 public interface UserRepository extends CrudRepository<User, Integer> {
 
-	@Query("SELECT US.userId FROM User US WHERE US.emailId= :emailId")
-	Long findByEmailId(@Param("emailId") String emailId);
+	@Query("SELECT US.userId FROM User US WHERE US.userName= :userName")
+	Long findByEmailId(@Param("userName") String userName);
 
 }

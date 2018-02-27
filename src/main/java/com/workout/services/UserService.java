@@ -26,8 +26,8 @@ public class UserService {
 		return userList;
 	}
 	
-	public Long authenticateUser(String emailId, String password) {
-		Long userId = userRepo.findByEmailId(emailId);
+	public Long authenticateUser(String userName, String password) {
+		Long userId = userRepo.findByEmailId(userName);
 		if (userId != null)
 			return userId;
 		return null;

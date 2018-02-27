@@ -26,6 +26,7 @@ public class WorkOut {
 	private interface Table {
 		String WORKOUT_ID = "WORKOUT_ID";
 		String TITLE = "TITLE";
+		String CALBURNTPERUNITTIME="CALBURNTPERUNITTIME";
 		String UNIT_TIME = "UNIT_TIME";
 	}
 
@@ -35,7 +36,11 @@ public class WorkOut {
 	private Long workoutId;
 
 	@Column(name = Table.TITLE)
+	private String calBurntPerUnitTime;
+	
+	@Column(name = Table.CALBURNTPERUNITTIME)
 	private String title;
+	
 
 	@Column(name = Table.UNIT_TIME)
 	private String unitTime;
@@ -67,6 +72,14 @@ public class WorkOut {
 
 	public void setUnitTime(String unitTime) {
 		this.unitTime = unitTime;
+	}
+	
+	public String getCalBurntPerUnitTime() {
+		return calBurntPerUnitTime;
+	}
+
+	public void setCalBurntPerUnitTime(String calBurntPerUnitTime) {
+		this.calBurntPerUnitTime = calBurntPerUnitTime;
 	}
 	@OneToMany(
             mappedBy = "id",
