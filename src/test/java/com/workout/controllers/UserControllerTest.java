@@ -1,0 +1,91 @@
+package com.workout.controllers;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
+import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.skyscreamer.jsonassert.JSONAssert;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import com.google.gson.Gson;
+import com.workout.WorkoutPortalApplication;
+import com.workout.dao.User;
+import com.workout.services.UserService;
+
+@RunWith(SpringRunner.class)
+@ContextConfiguration(classes = WorkoutPortalApplication.class)
+@WebMvcTest(value = UserController.class, secure = false)
+public class UserControllerTest {
+
+	@Autowired
+	private MockMvc mockMvc;
+
+	@Autowired
+	UserController userController;
+
+	@MockBean
+	UserService userService;
+
+	User sampleUser = new User((long) 1, "password", "userName");
+	
+	@Before
+	public void setUp() throws Exception {
+		this.mockMvc = MockMvcBuilders.standaloneSetup(this.userController).build();
+		MockitoAnnotations.initMocks(this);
+	}
+
+	@Test
+	public void testCreateUser() throws Exception {
+		User sampleUserResponse= sampleUser;
+		given(userService.createUser(Mockito.any(User.class))).willReturn(sampleUserResponse);
+		String content = new Gson().toJson(sampleUser);
+		ResultActions result = mockMvc
+          .perform(post("/user/register").content(content).contentType(APPLICATION_JSON_UTF8))
+          .andExpect(status().isOk());
+		assertThat(result.andReturn().equals(sampleUserResponse));
+	}
+
+	@Test
+	public void testGetUser() throws Exception {
+		List<User> sampleUserResponse = new ArrayList<User>();
+		sampleUserResponse.add(sampleUser);
+		Mockito.when(userService.getUserList()).thenReturn(sampleUserResponse);
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/user").accept(MediaType.APPLICATION_JSON);
+		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+		System.out.println(result.getResponse());
+		String expected = "[{userId:1,password:password,userName:userName}]";
+		JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
+	}
+
+	@Test
+	public void testAuthenticateUser() throws Exception {
+		given(userService.authenticateUser("userName", "password")).willReturn((long) 1);
+		this.mockMvc
+				.perform(post("/user/login").contentType(MediaType.APPLICATION_JSON).header("userName", "sandhya")
+						.header("password", "password"))
+				.andExpect(status().isOk())
+				.andReturn();
+	}
+
+}

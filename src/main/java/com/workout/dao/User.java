@@ -68,4 +68,23 @@ public class User {
     @JsonManagedReference    
     @JsonIgnore
     private List<WorkOut> workout = new ArrayList<>();
+	
+	public User(Long userId, String password, String userName, List<WorkOut> workout) {
+		super();
+		this.userId = userId;
+		this.password = password;
+		this.userName = userName;
+		this.workout = workout;
+	}
+	
+	public User(Long userId, String password, String userName) {
+		super();
+		this.userId = userId;
+		this.password = password;
+		this.userName = userName;
+	}
+
+	public User() {
+		super();
+	}
 }

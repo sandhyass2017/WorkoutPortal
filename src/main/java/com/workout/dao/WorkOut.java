@@ -55,6 +55,10 @@ public class WorkOut {
 	@JsonBackReference
 	private User user;
 
+	public WorkOut() {
+		super();
+	}
+
 	public Long getWorkoutId() {
 		return workoutId;
 	}

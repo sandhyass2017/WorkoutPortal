@@ -8,7 +8,7 @@ import com.workout.dao.WorkOut;
 
 public interface WorkoutRepository extends CrudRepository<WorkOut, Integer> {
 	
-	@Query("SELECT WO.workoutId,WO.calBurntPerUnitTime,WO.title,WO.unitTime,WO.user.userName FROM WorkOut WO US WHERE WO.user.userId= :userId")
+	@Query("SELECT WO.workoutId,WO.calBurntPerUnitTime,WO.title,WO.unitTime,WO.user.userName FROM WorkOut WO WHERE WO.user.userId= :userId")
 	Iterable<WorkOut> findByUserId(@Param("userId") Long userId);
 
 }

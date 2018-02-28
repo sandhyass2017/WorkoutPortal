@@ -33,8 +33,8 @@ public class UserController {
     }
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<Iterable<User>> getUser() {
-		Iterable<User> user = userService.getUser();
+	public ResponseEntity<Iterable<User>> getUserList() {
+		Iterable<User> user = userService.getUserList();
         return new ResponseEntity<Iterable<User>>(user, HttpStatus.OK);
     }
 	
