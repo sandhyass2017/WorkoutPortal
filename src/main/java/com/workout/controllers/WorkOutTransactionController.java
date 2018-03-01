@@ -1,7 +1,8 @@
 package com.workout.controllers;
 
+import static java.util.concurrent.TimeUnit.NANOSECONDS;
+
 import java.time.Duration;
-import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import static java.util.concurrent.TimeUnit.NANOSECONDS;
+
 import com.workout.dao.WorkOutTransactions;
 import com.workout.services.WorkoutTransactionService;
 
@@ -28,7 +29,7 @@ public class WorkOutTransactionController {
 	public ResponseEntity<WorkOutTransactions> calculateduration(@RequestBody WorkOutTransactions workoutTxn) {
 		workoutTxn.setDuration(Duration.between(workoutTxn.getStartTime(), workoutTxn.getStopTime()));
 		workoutTxn.setCalBurnt(calBurnt(workoutTxn.getDuration(), workoutTxn.getWorkout().getCalBurntPerUnitTime()));
-		WorkOutTransactions workoutTxns = workoutTxnService.updateWorkoutDuration(workoutTxn);
+		WorkOutTransactions workoutTxns = workoutTxnService.updateWorkoutTxnDetails(workoutTxn);
 		return new ResponseEntity<WorkOutTransactions>(workoutTxns, HttpStatus.OK);
 	}
 
@@ -38,4 +39,6 @@ public class WorkOutTransactionController {
 		return calBurnt;
 
 	}
+	
+	
 }

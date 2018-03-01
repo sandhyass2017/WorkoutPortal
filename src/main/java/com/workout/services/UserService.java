@@ -21,11 +21,7 @@ public class UserService {
 
 	}
 	
-	public Iterable<User> getUserList(){
-		Iterable<User> userList=userRepo.findAll();
-		return userList;
-	}
-	
+
 	public Long authenticateUser(String userName, String password) {
 		Long userId = userRepo.findByEmailId(userName);
 		if (userId != null)

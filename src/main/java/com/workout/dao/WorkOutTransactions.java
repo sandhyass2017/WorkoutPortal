@@ -98,12 +98,13 @@ public class WorkOutTransactions {
 	@JsonBackReference
 	private WorkOut workout;
 	
-	public WorkOutTransactions(Long txnId, LocalDateTime startTime, LocalDateTime stopTime
+	public WorkOutTransactions(Long txnId, LocalDateTime startTime, LocalDateTime stopTime,WorkOut workout
 			) {
 		super();
 		this.txnId = txnId;
 		this.startTime = startTime;
 		this.stopTime = stopTime;
+		this.workout=workout;
 	}
 
 	public WorkOutTransactions() {

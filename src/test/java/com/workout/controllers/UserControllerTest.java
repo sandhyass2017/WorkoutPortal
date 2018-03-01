@@ -66,17 +66,6 @@ public class UserControllerTest {
 		assertThat(result.andReturn().equals(sampleUserResponse));
 	}
 
-	@Test
-	public void testGetUser() throws Exception {
-		List<User> sampleUserResponse = new ArrayList<User>();
-		sampleUserResponse.add(sampleUser);
-		Mockito.when(userService.getUserList()).thenReturn(sampleUserResponse);
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/user").accept(MediaType.APPLICATION_JSON);
-		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
-		System.out.println(result.getResponse());
-		String expected = "[{userId:1,password:password,userName:userName}]";
-		JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
-	}
 
 	@Test
 	public void testAuthenticateUser() throws Exception {

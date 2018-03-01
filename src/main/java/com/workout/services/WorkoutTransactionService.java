@@ -13,7 +13,7 @@ public class WorkoutTransactionService {
 	private WorkoutTransactionsRepo workoutTransactionRepo;
 	
 	
-	public WorkOutTransactions updateWorkoutDuration(WorkOutTransactions workoutTransactions) {
+	public WorkOutTransactions updateWorkoutTxnDetails(WorkOutTransactions workoutTransactions) {
 		workoutTransactionRepo.save(workoutTransactions);
 		return workoutTransactions;
 	}
