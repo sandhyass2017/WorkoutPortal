@@ -97,4 +97,17 @@ public class WorkOutTransactions {
 	@JoinColumn(name = "workoutId")
 	@JsonBackReference
 	private WorkOut workout;
+	
+	public WorkOutTransactions(Long txnId, LocalDateTime startTime, LocalDateTime stopTime
+			) {
+		super();
+		this.txnId = txnId;
+		this.startTime = startTime;
+		this.stopTime = stopTime;
+	}
+
+	public WorkOutTransactions() {
+		super();
+	}
+
 }

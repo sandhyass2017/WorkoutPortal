@@ -1,17 +1,24 @@
 package com.workout.controllers;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.RestController;
+import static java.util.concurrent.TimeUnit.NANOSECONDS;
 import com.workout.dao.WorkOutTransactions;
 import com.workout.services.WorkoutTransactionService;
 
+
+@RestController
+@RequestMapping("/workoutTxn")
+@CrossOrigin
 public class WorkOutTransactionController {
 
 	@Autowired
@@ -26,8 +33,8 @@ public class WorkOutTransactionController {
 	}
 
 	public Double calBurnt(Duration duration, Double calBurntPerUnitTime) {
-		Double seconds = (double) duration.toMinutes()*60;
-		Double calBurnt = (calBurntPerUnitTime) * (seconds);
+		long nanos = (long) duration.toNanos();
+		Double calBurnt = (calBurntPerUnitTime) * (NANOSECONDS.toSeconds(nanos));
 		return calBurnt;
 
 	}
