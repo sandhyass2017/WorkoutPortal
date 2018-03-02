@@ -14,3 +14,5 @@ security:
   basic:
     enabled: false
 server.port: 8082
+
+spring.queries.users-query : select userName, password, active from user where userName=?

@@ -32,7 +32,7 @@ public class UserController {
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 
-	@RequestMapping(method = RequestMethod.POST, value = "/login")
+	@RequestMapping(method = RequestMethod.GET, value = "/login")
     public ResponseEntity<String> authenticateUser(@RequestHeader("userName") String userName,
                                                    @RequestHeader("password") String password) {
 
