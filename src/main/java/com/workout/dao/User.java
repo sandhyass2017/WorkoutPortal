@@ -1,20 +1,13 @@
 package com.workout.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "User")
@@ -60,21 +53,20 @@ public class User {
 		this.userName = userName;
 	}
 	
-	@OneToMany(
+/*	@OneToMany(
             mappedBy = "user",
             cascade = CascadeType.PERSIST,
             fetch = FetchType.LAZY,
             orphanRemoval = true)
     @JsonManagedReference    
     @JsonIgnore
-    private List<WorkOut> workout = new ArrayList<>();
+    private List<WorkOut> workout = new ArrayList<>();*/
 	
 	public User(Long userId, String password, String userName, List<WorkOut> workout) {
 		super();
 		this.userId = userId;
 		this.password = password;
 		this.userName = userName;
-		this.workout = workout;
 	}
 	
 	public User(Long userId, String password, String userName) {

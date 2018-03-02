@@ -6,7 +6,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -33,7 +32,7 @@ public class UserController {
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 
-	/*@RequestMapping(method = RequestMethod.POST, value = "/login")
+	@RequestMapping(method = RequestMethod.POST, value = "/login")
     public ResponseEntity<String> authenticateUser(@RequestHeader("userName") String userName,
                                                    @RequestHeader("password") String password) {
 
@@ -52,17 +51,8 @@ public class UserController {
         }
 
         return response;
-    }*/
+    }
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	 public String login(Model model, String error, String logout) {
-	 if (error != null)
-	 model.addAttribute("error", "Your username and password is invalid.");
 
-	 if (logout != null)
-	 model.addAttribute("message", "You have been logged out successfully.");
-
-	 return "login";
-	 }
 
 }
