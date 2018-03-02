@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
@@ -32,27 +33,29 @@ public class UserController {
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 
-	@RequestMapping(method = RequestMethod.GET, value = "/login")
-    public ResponseEntity<String> authenticateUser(@RequestHeader("userName") String userName,
-                                                   @RequestHeader("password") String password) {
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public ResponseEntity<String> login(@RequestParam(value = "error", required = false) String error,
+		@RequestParam(value = "logout", required = false) String logout) {
 
-        ResponseEntity<String> response = null;
-        Long userId = userService.authenticateUser(userName, password);
-        Map<String, Object> message = new HashMap<String, Object>();
-        if (userId != null) {
-            message.put("message", "User Authenticated Successfully.");
-            message.put("userId", userId);
-            message.put("Status", "Sucess");
-            response = new ResponseEntity<String>(new Gson().toJson(message), HttpStatus.OK);
-        } else {
-            message.put("message", "Invalid User Credentails.");
-            message.put("Status", "Error");
-            response = new ResponseEntity<String>(new Gson().toJson(message), HttpStatus.FORBIDDEN);
-        }
+		ResponseEntity<String> response = null;
+		Map<String, Object> message = new HashMap<String, Object>();
+	  if (error != null) {
+		  message.put("message","Invalid username and password!");
+          message.put("Status", "Error");
+          response = new ResponseEntity<String>(new Gson().toJson(message), HttpStatus.FORBIDDEN);
+	  }
 
-        return response;
-    }
-	
+	  if (logout != null) {
+		  message.put("message","You've been logged out successfully.");
+          message.put("Status", "Success");
+          response = new ResponseEntity<String>(new Gson().toJson(message), HttpStatus.OK);
+	  }
+	  message.put("message","User Authenticated Successfully.");
+      message.put("Status", "Success");
+      response = new ResponseEntity<String>(new Gson().toJson(message), HttpStatus.OK);
 
+	  return response;
+
+	}
 
 }
