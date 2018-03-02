@@ -3,7 +3,6 @@ package com.workout.dao;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -93,7 +92,7 @@ public class WorkOutTransactions {
 	}
 
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "workoutId")
 	@JsonBackReference
 	private WorkOut workout;

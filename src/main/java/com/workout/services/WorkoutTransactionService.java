@@ -17,4 +17,10 @@ public class WorkoutTransactionService {
 		workoutTransactionRepo.save(workoutTransactions);
 		return workoutTransactions;
 	}
+	
+	public Iterable<WorkOutTransactions> getWorkoutTxnDetails(Long workoutId) {
+		Iterable<WorkOutTransactions> workoutTxnList=workoutTransactionRepo.findByWorkId(workoutId);
+		return workoutTxnList;
+	}
+
 }
