@@ -50,7 +50,7 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
 			.usernameParameter("userName")
 			.passwordParameter("password")
 			.and().logout()
-			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+			.logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
 			.logoutSuccessUrl("/").and().exceptionHandling()
 			.accessDeniedPage("/access-denied");
 	

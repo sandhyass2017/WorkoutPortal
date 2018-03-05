@@ -18,9 +18,12 @@ public class UserService {
 	public User createUser(User user) {
 		userRepo.save(user);
 		return user;
-
 	}
 	
+	public Long findByUserName(User user) {
+		Long userId= userRepo.findByEmailId(user.getUserName());
+		return userId;
+	}
 
 	public Long authenticateUser(String userName, String password) {
 		Long userId = userRepo.findByEmailId(userName);
