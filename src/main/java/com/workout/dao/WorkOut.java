@@ -12,10 +12,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cloud.cloudfoundry.com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "Workout")
+@CacheConfig(cacheNames = "Workout")
 public class WorkOut {
 
 	private interface Table {

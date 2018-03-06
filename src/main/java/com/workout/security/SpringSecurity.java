@@ -40,21 +40,18 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.
 		authorizeRequests()
-			.antMatchers("/").permitAll()
 			.antMatchers("/user/**").permitAll()
 			.antMatchers("/workout/**").permitAll()
 			.antMatchers("/workoutTxn/**").permitAll().anyRequest()			
 			.authenticated().and().csrf().disable().formLogin()
 			.loginPage("/user/login").failureUrl("/user/login?error=true")
-			.defaultSuccessUrl("/user/registration")
+			.defaultSuccessUrl("/user/regist")
 			.usernameParameter("userName")
 			.passwordParameter("password")
 			.and().logout()
 			.logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
 			.logoutSuccessUrl("/").and().exceptionHandling()
 			.accessDeniedPage("/access-denied");
-	
-
 	}
-
+	
 }

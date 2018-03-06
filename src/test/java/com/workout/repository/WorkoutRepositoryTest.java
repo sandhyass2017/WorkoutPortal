@@ -1,7 +1,7 @@
 package com.workout.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,24 +11,25 @@ import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.workout.dao.WorkOut;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UserRepositoryTest {
- 
-	@Autowired
-    private UserRepository repository;
+public class WorkoutRepositoryTest {
 	
 	@Autowired
 	private CacheManager cacheManager;
 	
+	@Autowired
+	private WorkoutRepository workoutRepository;
+
 	@Test
-	public void testFindByEmailId() {
-		Cache users = this.cacheManager.getCache("user");
-		assertThat(users).isNotNull();
-		users.clear();
-		assertThat(users.get("sandy@cts.com")).isNull();
-		Long be = this.repository.findByEmailId("sandy@cts.com");
-		assertNotNull(be);
+	public void testFindByUserId() {
+		Cache worekouts = this.cacheManager.getCache("Workout");
+		assertThat(worekouts).isNotNull();
+		worekouts.clear();
+		Iterable<WorkOut> response = this.workoutRepository.findByUserId((long)1);
+		assertNotNull(response);
 	}
 
 }

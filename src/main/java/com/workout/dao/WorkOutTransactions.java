@@ -13,10 +13,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.cache.annotation.CacheConfig;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "WorkoutTransactions")
+@CacheConfig(cacheNames = "WorkoutTransactions")
 public class WorkOutTransactions {
 
 	private interface Table {

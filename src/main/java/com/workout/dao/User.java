@@ -9,8 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.cache.annotation.CacheConfig;
+
 @Entity
 @Table(name = "User")
+@CacheConfig(cacheNames = "user")
 public class User {
 	
 	private interface Table {
