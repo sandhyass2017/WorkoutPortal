@@ -96,12 +96,11 @@ public class WorkOut {
 		this.unitTime = unitTime;
 	}
 
-	public WorkOut(Long workoutId, Double calBurntPerUnitTime, String title, UnitTime unitTime, User user) {
+	public WorkOut(Long workoutId, Double calBurntPerUnitTime, String title, User user) {
 		super();
 		this.workoutId = workoutId;
 		this.title = title;
 		this.calBurntPerUnitTime = calBurntPerUnitTime;
-		this.unitTime = unitTime;
 		this.user = user;
 	}
 

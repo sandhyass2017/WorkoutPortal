@@ -1,7 +1,6 @@
 package com.workout.services;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.fail;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
@@ -29,7 +28,8 @@ public class WorkoutTransactionServiceTest {
     public void setup() {
         MockitoAnnotations.initMocks(this);
     }
-    WorkOut workout= new WorkOut((long)1, (double)123, "Jumping", null);
+    User sampleUser = new User((long) 1, "password", "userName");
+    WorkOut workout= new WorkOut((long)1, (double)123, "Jumping", sampleUser);
 	//WorkOutTransactions workoutTxn= new WorkOutTransactions((long) 1,LocalDateTime.of(2018,03,12 , 9, 15), LocalDateTime.of(2018,03,12 , 11, 15),workout);
 	WorkOutTransactions workoutTxn= new WorkOutTransactions((long) 1,LocalDateTime.now(), LocalDateTime.now(),workout);
 

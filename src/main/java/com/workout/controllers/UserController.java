@@ -34,7 +34,7 @@ public class UserController {
 		Map<String, Object> message = new HashMap<String, Object>();
 		Long userExists = userService.findByUserName(userObj);
 		ResponseEntity<String> response = null;
-		if (userExists != null) {
+		if (userExists !=0) {
 			message.put("message", "There is already a user registered with the email provided!");
 			message.put("Status", "Error");
 			response = new ResponseEntity<String>(new Gson().toJson(message), HttpStatus.FORBIDDEN);

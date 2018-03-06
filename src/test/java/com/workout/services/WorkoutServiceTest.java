@@ -29,7 +29,7 @@ public class WorkoutServiceTest {
         MockitoAnnotations.initMocks(this);
     }
     User sampleUser = new User((long) 1, "password", "userName");
-    WorkOut workout= new WorkOut((long)1, (double)123, "Jumping", null,sampleUser);
+    WorkOut workout= new WorkOut((long)1, (double)123, "Jumping", sampleUser);
 
 	@Test
 	public void testDefineWorkout() {

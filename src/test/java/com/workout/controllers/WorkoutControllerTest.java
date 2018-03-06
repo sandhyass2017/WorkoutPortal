@@ -29,6 +29,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.google.gson.Gson;
 import com.workout.WorkoutPortalApplication;
+import com.workout.dao.User;
 import com.workout.dao.WorkOut;
 import com.workout.services.WorkoutService;
 
@@ -47,7 +48,8 @@ public class WorkoutControllerTest {
 	@MockBean
 	WorkoutService workoutService;
 	
-	WorkOut workout= new WorkOut((long)1, (double)123, "Jumping", null);
+	User sampleUser = new User((long) 1, "password", "userName");
+	WorkOut workout= new WorkOut((long)1, (double)123, "Jumping", sampleUser);
 	
 	
 	@Before
