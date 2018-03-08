@@ -18,8 +18,8 @@ public class WorkoutTransactionService {
 		return workoutTransactions;
 	}
 	
-	public Iterable<WorkOutTransactions> getWorkoutTxnDetails(Long workoutId) {
-		Iterable<WorkOutTransactions> workoutTxnList=workoutTransactionRepo.findByWorkId(workoutId);
+	public Iterable<WorkOutTransactions> getWorkoutTxnDetails(Long userId) {
+		Iterable<WorkOutTransactions> workoutTxnList=workoutTransactionRepo.findByWorkId(userId);
 		return workoutTxnList;
 	}
 

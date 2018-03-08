@@ -28,7 +28,7 @@ public class WorkoutController {
         return new ResponseEntity<WorkOut>(workoutDetail, HttpStatus.OK);
     }
 	
-	@RequestMapping(method = RequestMethod.GET, value="{userId}")
+	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<Iterable<WorkOut>> getWorkoutDetails(@PathVariable Long userId) {
 		Iterable<WorkOut> workoutDetails = workoutService.getWorkoutDetails(userId);
         return new ResponseEntity<Iterable<WorkOut>>(workoutDetails, HttpStatus.OK);

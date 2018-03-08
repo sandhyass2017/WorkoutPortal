@@ -9,7 +9,7 @@ import com.workout.dao.WorkOutTransactions;
 public interface WorkoutTransactionsRepo extends CrudRepository<WorkOutTransactions, Integer> {
 	
 
-	@Query("SELECT WT.txnId,WT.startTime,WT.stopTime,WT.duration,WT.calBurnt,WT.workout.workoutId FROM WorkOutTransactions WT WHERE WT.workout.workoutId= :workoutId")
-	Iterable<WorkOutTransactions> findByWorkId(@Param("workoutId") Long workoutId);
+	@Query("SELECT WT.txnId,WT.startTime,WT.stopTime,WT.duration,WT.calBurnt,WT.workout.workoutId FROM WorkOutTransactions WT WHERE WT.workout.user.userId= :userId")
+	Iterable<WorkOutTransactions> findByWorkId(@Param("userId") Long userId);
 
 }
