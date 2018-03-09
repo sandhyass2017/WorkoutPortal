@@ -74,7 +74,7 @@ public class WorkoutControllerTest {
 	public void testGetWorkoutDetails() throws Exception {
 		List<WorkOut> sampleWorkoutResponse = new ArrayList<WorkOut>();
 		sampleWorkoutResponse.add(workout);
-		Mockito.when(workoutService.getWorkoutDetails((long) 1)).thenReturn(sampleWorkoutResponse);
+		Mockito.when(workoutService.getWorkoutDetails()).thenReturn(sampleWorkoutResponse);
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/workout/"+workout.getWorkoutId()).accept(MediaType.APPLICATION_JSON);
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 		assertThat(result.getResponse().equals(workout));

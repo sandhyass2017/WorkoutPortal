@@ -95,7 +95,7 @@ public class WorkOutTransactions {
 	}
 
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "workoutId")
 	@JsonBackReference
 	private WorkOut workout;

@@ -15,9 +15,12 @@ import javax.persistence.Table;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cloud.cloudfoundry.com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "Workout")
 @CacheConfig(cacheNames = "Workout")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class WorkOut {
 
 	private interface Table {
@@ -42,7 +45,7 @@ public class WorkOut {
 	@Column(name = Table.UNIT_TIME)
 	private UnitTime unitTime;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "userId")
 	@JsonManagedReference
 	private User user;
@@ -83,7 +86,7 @@ public class WorkOut {
 		this.calBurntPerUnitTime = calBurntPerUnitTime;
 	}
 
-	/*@OneToMany(mappedBy = "txnId", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, orphanRemoval = true)
+	/*@OneToMany(mappedBy = "txnId", cascade = CascadeType.ALL,orphanRemoval = true)
 	@JsonManagedReference
 	@JsonIgnore
 	private List<WorkOutTransactions> workoutTransactions = new ArrayList<>();*/
