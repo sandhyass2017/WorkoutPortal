@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.workout.dao.WorkOut;
-import com.workout.repository.UserRepository;
 import com.workout.services.WorkoutService;
 
 @RestController
@@ -26,13 +25,8 @@ public class WorkoutController {
 	private WorkoutService workoutService;
 	
 	
-	@Autowired
-	private UserRepository userRepo;
-	
-	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<WorkOut> defineWorkout(@RequestBody WorkOut workout) {
-		workout.getUser().setUserId(userRepo.findByEmailId(workout.getUser().getUserName()));
 		WorkOut workoutDetail = workoutService.defineWorkout(workout);
         return new ResponseEntity<WorkOut>(workoutDetail, HttpStatus.OK);
     }

@@ -1,5 +1,7 @@
 package com.workout.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +20,8 @@ public class WorkoutTransactionService {
 		return workoutTransactions;
 	}
 	
-	public Iterable<WorkOutTransactions> getWorkoutTxnDetails(Long userId) {
-		Iterable<WorkOutTransactions> workoutTxnList=workoutTransactionRepo.findByWorkId(userId);
+	public List<WorkOutTransactions> getWorkoutTxnDetails(Long userId) {
+		List<WorkOutTransactions> workoutTxnList=workoutTransactionRepo.findByWorkId(userId);
 		return workoutTxnList;
 	}
 

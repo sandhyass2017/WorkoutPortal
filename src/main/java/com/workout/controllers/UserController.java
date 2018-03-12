@@ -84,6 +84,7 @@ public class UserController {
         if (userId != null) {
             message.put("message", "User Authenticated Successfully.");
             message.put("Status", "Sucess");
+            message.put("UserId", userId);
             response = new ResponseEntity<String>(new Gson().toJson(message), HttpStatus.OK);
         } else {
             message.put("message", "Invalid User Credentails.");
