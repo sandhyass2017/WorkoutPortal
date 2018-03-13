@@ -20,8 +20,8 @@ public class WorkoutTransactionService {
 		return workoutTransactions;
 	}
 	
-	public List<WorkOutTransactions> getWorkoutTxnDetails(Long userId) {
-		List<WorkOutTransactions> workoutTxnList=workoutTransactionRepo.findByWorkId(userId);
+	public List<WorkOutTransactions> getWorkoutTxnDetails(Long workoutId) {
+		List<WorkOutTransactions> workoutTxnList=workoutTransactionRepo.findByWorkId(workoutId);
 		return workoutTxnList;
 	}
 

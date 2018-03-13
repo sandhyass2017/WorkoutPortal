@@ -42,9 +42,9 @@ public class WorkOutTransactionController {
 
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value="{userId}")
-	public ResponseEntity<List<WorkOutTransactions>> getWorkoutDetails(@PathVariable Long userId) {
-		List<WorkOutTransactions> workoutTxnDetails = workoutTxnService.getWorkoutTxnDetails(userId);
+	@RequestMapping(method = RequestMethod.GET, value="{workoutId}")
+	public ResponseEntity<List<WorkOutTransactions>> getWorkoutDetails(@PathVariable Long workoutId) {
+		List<WorkOutTransactions> workoutTxnDetails = workoutTxnService.getWorkoutTxnDetails(workoutId);
         return new ResponseEntity<List<WorkOutTransactions>>(workoutTxnDetails, HttpStatus.OK);
     }
 
