@@ -1,10 +1,13 @@
 package com.workout.controllers;
 
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -44,6 +47,7 @@ public class WorkOutTransactionControllerTest {
 	WorkOut workout = new WorkOut((long) 1, (double) 123, "Jumping", sampleUser);
 	WorkOutTransactions workoutTxn = new WorkOutTransactions((long) 1, LocalDateTime.now(), LocalDateTime.now(),
 			workout);
+	
 
 	@Before
 	public void setUp() throws Exception {
@@ -56,6 +60,15 @@ public class WorkOutTransactionControllerTest {
 		given(workoutTxnService.updateWorkoutTxnDetails(Mockito.any(WorkOutTransactions.class))).willReturn(workoutTxn);
 		String content = new Gson().toJson(workoutTxn);
 		mockMvc.perform(post("/workoutTxn").content(content).contentType(APPLICATION_JSON_UTF8)).andReturn();
+	}
+	
+	@Test
+	public void testGetWorkoutTxnDetails() {
+		List<WorkOutTransactions> response= new ArrayList<>();
+		response.add(workoutTxn);
+		given(workoutTxnService.getWorkoutTxnDetails(workout.getWorkoutId())).willReturn(response);
+		List<WorkOutTransactions> workoutTxnList=workoutTxnService.getWorkoutTxnDetails((long) 1);
+		assertNotNull(workoutTxnList);
 	}
 
 }
