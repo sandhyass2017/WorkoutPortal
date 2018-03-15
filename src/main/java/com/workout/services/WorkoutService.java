@@ -21,9 +21,9 @@ public class WorkoutService {
 
 	}
 	
-	public List<WorkOut> getWorkoutDetails(){
+	public List<WorkOut> getWorkoutDetails(Long userId){
 		List<WorkOut> workouList = new ArrayList<>();
-		workoutRepo.findAll().forEach(workouList::add);
+		workouList = workoutRepo.findByUserId(userId);
 		return workouList;
 	}
 }
